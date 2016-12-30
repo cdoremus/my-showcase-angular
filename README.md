@@ -1,5 +1,5 @@
 # my-showcase-backend-angular
-## Angular 2 frontend for an application...
+## Angular 2 frontend for an application to showcase user content such as photos, graphics or writings
 
 ### **Based on github angular2-webpack starter by preboot**
 
