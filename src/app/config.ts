@@ -1,3 +1,3 @@
 export const config = {
-  loginUrl: 'http://localhost:8080/user/find'
+  loginUrl: 'http://localhost:8080/user/findByLoginId?loginId='
 };

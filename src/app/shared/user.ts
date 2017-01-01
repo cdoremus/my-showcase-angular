@@ -1,9 +1,11 @@
 interface User {
   userId: number;
-  username: String;
-  firstName: String;
-  lastName: String;
-  email: String;
+  loginId: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  createDate: string;
 }
 
 export default User;

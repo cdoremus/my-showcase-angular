@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Response } from '@angular/http';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { Subscription } from 'rxjs';
 import { LoginService } from './login.service';
 import User from '../shared/user';
 
@@ -19,7 +20,7 @@ import User from '../shared/user';
             Please enter the user name
           </div>
         </fieldset>
-        <input type="submit" value="Login" (click)="onClickLogin()" />
+        <input type="submit" value="Login" />
         </legend>
       </form>
     </div>
@@ -28,10 +29,11 @@ import User from '../shared/user';
     </pre>
    `
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   private loginForm: FormGroup;
   private loginClicked: boolean;
   private user: User;
+  private loginSubscription: Subscription;
 
   constructor(fb: FormBuilder, private loginService: LoginService) {
     this.loginForm = fb.group({
@@ -40,21 +42,29 @@ export class LoginComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log('Hello Login', this.loginForm);
     this.loginClicked = false;
   }
 
+  public ngOnDestroy(): void {
+    if (this.loginSubscription) {
+      this.loginSubscription.unsubscribe();
+    }
+  }
+
   public onSubmit(form: FormGroup): void {
-    console.log('LoginComponent.onSubmit form param:', form);
+    this.loginClicked = true;
+    console.log('LoginComponent.onSubmit form param:', form.value);
     let username: string = form.value.username;
-    this.loginService.login(username)
-      .subscribe(
-        response => {
-          console.log('Login service response', response);
-          this.user = response;
-      },
-        error => console.log('Error in login formm submit', error)
-      );
+    if (username) {
+      this.loginSubscription = this.loginService.login(username)
+        .subscribe(
+          response => {
+            console.log('Login service response', response);
+            this.user = response.json();
+        },
+          error => console.log('Error in login form submit', error)
+        );
+    }
 
   }
 

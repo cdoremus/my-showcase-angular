@@ -1,8 +1,5 @@
 import { Injectable, Inject, OpaqueToken } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs';
-
-import User from '../shared/user';
+import { Http } from '@angular/http';
 
 export const LOGIN_URL = new OpaqueToken('LoginUrl');
 
@@ -15,11 +12,10 @@ export class LoginService {
       console.log('Login URL: ', loginUrl);
   }
 
-  public login(username: string): Observable<User> {
+  public login(username: string): any {
     console.log('Login username: ', username);
-    console.log('Login url: ', this.loginUrl);
-    return http.get(`${this.loginUrl}/${username}`)
-      .map((response: Response) => response.json())
-      .catch(error => Observable.throw(error));
+    let loginQueryString = `${this.loginUrl}${username}`;
+    console.log('Login query string: ', loginQueryString);
+    return this.http.get(`${loginQueryString}`);
   }
 }
