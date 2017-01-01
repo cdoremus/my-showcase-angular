@@ -1,3 +1,25 @@
 * {
   color: #f87c08;
 }
+fieldset {
+  border: 0;
+}
+
+.error {
+  color: red;
+}
+
+.loginFormContainer {
+  border: 2px solid black;
+  margin: 5px auto;
+  width: 300px;
+}
+
+input[type="submit"] {
+  margin-bottom: 5px;
+}
+
+legend {
+  border: 2px solid yellow;
+  margin: 2px auto;
+}

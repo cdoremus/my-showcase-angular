@@ -1,30 +1,37 @@
+import { LoginService, LOGIN_URL } from './login/login.service';
+import { LoginComponent } from './login/login.component';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ApiService } from './shared';
 import { routing } from './app.routing';
+import { config } from './config';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
+
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule,
+    ReactiveFormsModule,
     routing
   ],
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    LoginComponent
   ],
   providers: [
-    ApiService
+    ApiService,
+    LoginService,
+    { provide: LOGIN_URL, useValue: config.loginUrl }
   ],
   bootstrap: [AppComponent]
 })
