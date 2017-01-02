@@ -9,7 +9,7 @@ import { AboutComponent } from './about/about.component';
 import { ApiService } from './shared';
 import { routing } from './app.routing';
 import { config } from './config';
-import { CONFIG } from './shared/tokens';
+import { CONFIG } from './shared/constants';
 import { LoginService } from './login/login.service';
 import { LoginComponent } from './login/login.component';
 

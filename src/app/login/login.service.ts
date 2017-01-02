@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { CONFIG } from '../shared/tokens';
+import { CONFIG } from '../shared/constants';
 
 import User from '../shared/user';
 
