@@ -1,4 +1,3 @@
-import { Response } from '@angular/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -58,9 +57,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (username) {
       this.loginSubscription = this.loginService.login(username)
         .subscribe(
-          response => {
-            console.log('Login service response', response);
-            this.user = response.json();
+          user => {
+            console.log('Login service response', user);
+            this.user = user;
         },
           error => console.log('Error in login form submit', error)
         );
