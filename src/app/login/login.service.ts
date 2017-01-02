@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
-import { Injectable, Inject, OpaqueToken } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { CONFIG } from '../shared/tokens';
 
 import User from '../shared/user';
-export const LOGIN_URL = new OpaqueToken('LoginUrl');
 
 
 @Injectable()
@@ -11,13 +11,13 @@ export class LoginService {
 
   constructor(
     private http: Http,
-    @Inject(LOGIN_URL) private loginUrl) {
-      console.log('Login URL: ', loginUrl);
+    @Inject(CONFIG) private config) {
+      console.log('Login URL: ', config);
   }
 
   public login(username: string): Observable<User> {
     console.log('Login username: ', username);
-    let loginQueryString = `${this.loginUrl}${username}`;
+    let loginQueryString = `${this.config.loginUrl}${username}`;
     console.log('Login query string: ', loginQueryString);
     return this.http.get(`${loginQueryString}`)
       .map((response: Response) => response.json())

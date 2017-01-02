@@ -1,5 +1,3 @@
-import { LoginService, LOGIN_URL } from './login/login.service';
-import { LoginComponent } from './login/login.component';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -11,6 +9,9 @@ import { AboutComponent } from './about/about.component';
 import { ApiService } from './shared';
 import { routing } from './app.routing';
 import { config } from './config';
+import { CONFIG } from './shared/tokens';
+import { LoginService } from './login/login.service';
+import { LoginComponent } from './login/login.component';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
@@ -31,7 +32,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
   providers: [
     ApiService,
     LoginService,
-    { provide: LOGIN_URL, useValue: config.loginUrl }
+    { provide: CONFIG, useValue: config }
   ],
   bootstrap: [AppComponent]
 })
