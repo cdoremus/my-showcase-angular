@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ApiService } from './shared';
 import { routing } from './app.routing';
-import { config } from './config';
+import { config } from './app.config';
 import { CONFIG } from './shared/constants';
 import { LoginService } from './login/login.service';
 import { LoginComponent } from './login/login.component';
