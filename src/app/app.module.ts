@@ -1,3 +1,4 @@
+import { AppStateService } from './shared/appstate.service';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -12,6 +13,8 @@ import { config } from './app.config';
 import { CONFIG } from './shared/constants';
 import { LoginService } from './login/login.service';
 import { LoginComponent } from './login/login.component';
+import { ContentEditorComponent } from './contentEditor/contentEditor.component';
+import { ContentEditorService } from './contentEditor/contentEditor.service';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
@@ -27,11 +30,14 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     AppComponent,
     HomeComponent,
     AboutComponent,
+    ContentEditorComponent,
     LoginComponent
   ],
   providers: [
     ApiService,
+    AppStateService,
     LoginService,
+    ContentEditorService,
     { provide: CONFIG, useValue: config }
   ],
   bootstrap: [AppComponent]
