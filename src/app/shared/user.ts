@@ -7,4 +7,12 @@ export interface User {
   createDate: string;
 }
 
+export const defaultUser: User = {
+  userId: 0,
+  loginId: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  createDate: undefined,
+};
 
