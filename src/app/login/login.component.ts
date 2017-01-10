@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LoginService } from './login.service';
-import User from '../shared/user';
+import { User } from '../shared/user';
 
 @Component({
   selector: 'my-login',
@@ -13,9 +13,9 @@ import User from '../shared/user';
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)" >
         <legend>
         <fieldset>
-          <label for="loginUsername">User Name:</label>
-          <input id=loginUsername #username type="text" placeholder="Enter user name" formControlName= "username" />
-          <div class="error" *ngIf="loginClicked && loginForm.controls.username.errors">
+          <label for="loginId">Login ID:</label>
+          <input id=loginId type="text" placeholder="Enter login id" formControlName= "loginId" />
+          <div class="error" *ngIf="loginClicked && loginForm.controls.loginId.errors">
             Please enter the user name
           </div>
         </fieldset>
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(fb: FormBuilder, private loginService: LoginService) {
     this.loginForm = fb.group({
-      'username': ['', Validators.required]
+      'loginId': ['', Validators.required]
     });
   }
 
@@ -53,9 +53,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   public onSubmit(form: FormGroup): void {
     this.loginClicked = true;
     console.log('LoginComponent.onSubmit form param:', form.value);
-    let username: string = form.value.username;
-    if (username) {
-      this.loginSubscription = this.loginService.login(username)
+    let loginId: string = form.value.loginId;
+    if (loginId) {
+      this.loginSubscription = this.loginService.login(loginId)
         .subscribe(
           user => {
             console.log('Login service response', user);
