@@ -54,3 +54,6 @@ __build__/**
 .idea/
 *.swp
 .vscode/
+
+# Used to test snippits in Node #
+test.js*
