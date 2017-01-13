@@ -41,7 +41,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
       </form>
       </div>
       <div class="contentFormContainer">
-        <form [formGroup]="contentForm" (ngSubmit)="saveFileMetadata(contentForm)" >
+        <form [formGroup]="contentForm" (ngSubmit)="saveFileMetadata(contentForm)" #form="ngForm">
           <fieldset>
             <label for="itemId">ID:</label>
               <input id="itemId" type="text" formControlName="itemId" readonly="true"/>
@@ -49,14 +49,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
           <fieldset>
             <label for="contentTitle">Title:</label>
             <input id="contentTitle" type="text" placeholder="Enter title" formControlName="title" />
-            <div class="error" *ngIf="contentForm.controls['title'].hasError('required')">
+            <div class="error" *ngIf="form.submitted && contentForm.controls['title'].hasError('required')">
               Please enter the title
             </div>
           </fieldset>
           <fieldset>
             <label for="contentDesc">Description:</label>
             <input id="contentDesc" type="text" placeholder="Enter description" formControlName="description" />
-            <div class="error" *ngIf="contentForm.controls['description'].hasError('required')">
+            <div class="error" *ngIf="form.submitted && contentForm.controls['description'].hasError('required')">
               Please enter the description
             </div>
           </fieldset>
