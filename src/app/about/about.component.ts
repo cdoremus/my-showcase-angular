@@ -1,3 +1,4 @@
+import { SITE_TITLE } from './../shared/constants';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+  siteTitle: string = SITE_TITLE;
 
   constructor() {
     // Do stuff
