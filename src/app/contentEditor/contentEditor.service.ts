@@ -23,15 +23,22 @@ export class ContentEditorService {
   }
 
   saveFileMetadata(fileData: ContentItem) {
-        let formData: FormData = new FormData();
-        formData.append('item', fileData);
-        formData.append('loginId', this.getLoginId());
-        let headers: Headers = new Headers();
-        headers.append('Accept', 'application/json');
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(config.saveFileMetadata, formData, options)
-            .map((response: Response) => response.json())
-            .catch(error => Observable.throw(error));
+    console.log('File Data to save: ', fileData);
+    let formData: FormData = new FormData();
+      // @RequestParam("itemId") Long itemId,
+      // @RequestParam("title") String title,
+      // @RequestParam("description") String description,
+      // @RequestParam("loginId") String username) {
+    formData.append('itemId', fileData.itemId);
+    formData.append('title', fileData.title);
+    formData.append('description', fileData.description);
+    formData.append('loginId', this.getLoginId());
+    let headers: Headers = new Headers();
+    headers.append('Accept', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(config.saveFileMetadata, formData, options)
+        .map((response: Response) => response.json())
+        .catch(error => Observable.throw(error));
   }
 
 
